@@ -1,6 +1,9 @@
 require_relative 'boot'
 
 require 'rails/all'
+require 'openssl'
+
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -18,5 +21,6 @@ module MultiCurrency
     config.time_zone = "Kolkata"
     config.autoload_paths += %W(#{config.root}/lib/)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    
   end
 end

@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180519150111) do
+ActiveRecord::Schema.define(version: 20180519170840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.string "code", default: "", null: false
+    t.bigint "created_by_id", null: false
+    t.bigint "updated_by_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_countries_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_countries_on_updated_by_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+    t.bigint "created_by_id", null: false
+    t.bigint "updated_by_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_products_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_products_on_updated_by_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

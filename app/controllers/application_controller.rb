@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def index
-    byebug
     p user_signed_in?
   end
 end
